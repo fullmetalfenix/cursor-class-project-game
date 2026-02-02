@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space Shooter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      overflow: hidden;
+      background: #0a0a0f;
+      font-family: 'Share Tech Mono', monospace;
+      color: #e0e8ff;
+    }
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    #ui {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+      z-index: 10;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+    }
+    #score, #lives {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+      letter-spacing: 0.1em;
+    }
+    #lives { color: #ff4466; }
+    #score { color: #00d4ff; }
+    #overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 5, 15, 0.92);
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    #overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #overlay h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #00d4ff, #8844ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    #overlay p {
+      font-size: 1.1rem;
+      color: #8899bb;
+      margin-bottom: 1.5rem;
+    }
+    #overlay button {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, #00d4ff22, #8844ff44);
+      border: 2px solid #00d4ff;
+      color: #e0e8ff;
+      cursor: pointer;
+      border-radius: 4px;
+      letter-spacing: 0.15em;
+      transition: all 0.2s;
+    }
+    #overlay button:hover {
+      background: linear-gradient(135deg, #00d4ff44, #8844ff66);
+      box-shadow: 0 0 24px rgba(0, 212, 255, 0.4);
+    }
+    #instructions {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: #556688;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="ui">
+      <span id="score">SCORE: 0</span>
+      <span id="lives">LIVES: 3</span>
+    </div>
+    <div id="overlay">
+      <h1>SPACE SHOOTER</h1>
+      <p id="overlay-message">Arrow keys / WASD to move · SPACE to shoot</p>
+      <button id="start-btn">START GAME</button>
+    </div>
+    <div id="instructions">← → or A D to move · SPACE to shoot</div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
